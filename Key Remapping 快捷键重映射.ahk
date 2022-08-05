@@ -3,6 +3,13 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+; ========================脚本的修改===============
+F1:: ;用于使用Notepad3修改脚本, 保存后点击右上角运行即可
+run "D:\Program Files\Notepad3\Notepad3.exe" %A_ScriptFullPath%
+return
+
+;~LWin::Send {Bind}{vk07} ;禁用 Win 键, 已被 listarywin 替代.
+
 ;---------------------修改CapsLock键---------------------
 ;修改CapsLock为enter键，CapsLock改为Alt+CapsLock
 $CapsLock::Enter

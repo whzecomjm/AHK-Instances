@@ -3,9 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-;=================================使用notepad3快速打开文件=============================
-; 现在使用 TC, 自带 F4 编辑.
-
+;====================使用notepad3快速打开文件========================
 Explorer_GetSelection(hwnd="")   ;函数
 {  
     WinGet, process, processName, % "ahk_id" hwnd := hwnd? hwnd:WinExist("A")  
@@ -32,19 +30,18 @@ Explorer_GetSelection(hwnd="")   ;函数
     return Trim(ToReturn,"`n")  
 }
 
-
-$#n:: 
-;win+n 打开文件, 如果listary 工具栏存在使用 listary 自带
+; ====== 结合 Listary 的方式
 ;如果没有选中文件, 则新建 notpad3 窗口, 无效时关闭 explorer 窗口重新打开即可
+$+^e:: ;ctrl+shift+e 打开文件, 如果listary 工具栏存在使用 listary 自带
 IfWinActive ahk_class Listary_WidgetWin_0
 {
-Send #n
+Send +^e
 return
 }
 else
 {
 path :=% Explorer_GetSelection(hwnd) ;调用了函数
-Software = D:\Program Files\TotalCMD\Tools\Notepad3.exe
+Software = D:\Program Files\NotePad3\Notepad3\Notepad3.exe 
 Run, %Software% "%path%"
 return
 }
